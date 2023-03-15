@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from enum import Enum
 import sys
+import numpy as np
 
 
 class Suit(Enum):
@@ -35,11 +36,11 @@ class BlackJackCard(Card):
         super(BlackJackCard, self).__init__(value, suit)
 
     def is_ace(self):
-        return True if self._value == 1 else False
+        return self._value == 1
 
     def is_face_card(self):
         """Jack = 11, Queen = 12, King = 13"""
-        return True if 10 < self._value <= 13 else False
+        return 10 < self._value <= 13
 
     @property
     def value(self):
@@ -114,4 +115,5 @@ class Deck(object):
         return card
 
     def shuffle(self):
-        pass
+        np.random.shuffle(self)
+        
